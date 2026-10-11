@@ -1,0 +1,6 @@
+{
+  "name": "Quản Lí Lớp 10C3",
+  "description": "Ứng dụng quản lý lớp 10C3 toàn diện: tổng quan, sĩ số, phân tổ, sơ đồ chỗ ngồi, điểm thi đua, sổ vi phạm, tuyên dương và báo cáo thống kê.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,87 @@
+{
+  "entities": {
+    "Student": {
+      "title": "Student",
+      "description": "Information about a student in class 10C3",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique student identifier" },
+        "studentCode": { "type": "string", "description": "Student school ID code" },
+        "fullName": { "type": "string", "description": "Full name of the student" },
+        "gender": { "type": "string", "description": "Gender: Nam or Nữ" },
+        "dateOfBirth": { "type": "string", "description": "Date of birth in YYYY-MM-DD" },
+        "phone": { "type": "string", "description": "Contact phone number" },
+        "address": { "type": "string", "description": "Home address" },
+        "groupNumber": { "type": "integer", "description": "Class group/team number (1-4)" },
+        "role": { "type": "string", "description": "Class duty role" },
+        "notes": { "type": "string", "description": "Additional notes" },
+        "createdAt": { "type": "string", "description": "Creation timestamp" }
+      },
+      "required": ["id", "fullName", "groupNumber"]
+    },
+    "ConductRecord": {
+      "title": "ConductRecord",
+      "description": "Discipline or merit point record for a student",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique record identifier" },
+        "studentId": { "type": "string", "description": "Associated student identifier" },
+        "studentName": { "type": "string", "description": "Name of student" },
+        "groupNumber": { "type": "integer", "description": "Group of student" },
+        "type": { "type": "string", "description": "Record type: PLUS, MINUS, or VIOLATION" },
+        "category": { "type": "string", "description": "Reason or category" },
+        "points": { "type": "integer", "description": "Points value" },
+        "description": { "type": "string", "description": "Detailed explanation" },
+        "date": { "type": "string", "description": "Date of occurrence (YYYY-MM-DD)" },
+        "month": { "type": "string", "description": "Month string (YYYY-MM)" },
+        "resolved": { "type": "boolean", "description": "Whether violation has been resolved" },
+        "actionTaken": { "type": "string", "description": "Action taken by teacher" },
+        "createdAt": { "type": "string", "description": "Creation timestamp" }
+      },
+      "required": ["id", "studentId", "type", "points", "date"]
+    },
+    "SeatAssignment": {
+      "title": "SeatAssignment",
+      "description": "Seating chart position assignment",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Seat ID e.g. row1_col1" },
+        "row": { "type": "integer", "description": "Row number" },
+        "col": { "type": "integer", "description": "Column number" },
+        "studentId": { "type": "string", "description": "Assigned student ID" },
+        "studentName": { "type": "string", "description": "Assigned student name" }
+      },
+      "required": ["id", "row", "col"]
+    },
+    "ClassSettings": {
+      "title": "ClassSettings",
+      "description": "Teacher and class configuration",
+      "type": "object",
+      "properties": {
+        "teacherName": { "type": "string", "description": "Homeroom teacher name" },
+        "className": { "type": "string", "description": "Class title (10C3)" },
+        "academicYear": { "type": "string", "description": "School year" },
+        "currentMonth": { "type": "string", "description": "Selected active month" }
+      },
+      "required": ["className"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}/students/{studentId}": {
+      "schema": "Student",
+      "description": "Students belonging to the teacher user"
+    },
+    "/users/{userId}/records/{recordId}": {
+      "schema": "ConductRecord",
+      "description": "Points and infractions logged by the teacher"
+    },
+    "/users/{userId}/seating/{seatId}": {
+      "schema": "SeatAssignment",
+      "description": "Seating chart positions for the class"
+    },
+    "/users/{userId}/settings/{settingId}": {
+      "schema": "ClassSettings",
+      "description": "Settings for the teacher class"
+    }
+  }
+}
